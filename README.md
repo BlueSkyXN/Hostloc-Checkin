@@ -31,5 +31,9 @@ sh文件中的tgid，tgbotapi
 
 参考同款项目 https://github.com/BlueSkyXN/lovespeed
 
+参考： /var/spool/cron/root文件添加
+
+30 1 * * * bash /root/hostloc.sh > /dev/null 2>&1
+
 # 参考资料
 https://github.com/Jox2018/hostloc_getPoints
