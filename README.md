@@ -33,7 +33,7 @@ sh文件中的tgid，tgbotapi
 
 参考： 
 
-/var/spool/cron/root 或者 /var/spool/cron/crontabs
+/var/spool/cron/root 或者 /var/spool/cron/crontabs/root
 
 这个文件中添加
 
