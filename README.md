@@ -25,7 +25,11 @@ py文件中175-176两行的账户名和密码
 
 sh文件中的tgid，tgbotapi
 
-为了避免触发防CC，我把单次访问时间拉高到了60s，所以自行时间会非常非常长
+为了避免触发防CC，我把单次访问时间拉高到了60s，所以执行时间会非常非常长
+
+### 定时
+
+参考同款项目 https://github.com/BlueSkyXN/lovespeed
 
 # 参考资料
 https://github.com/Jox2018/hostloc_getPoints
