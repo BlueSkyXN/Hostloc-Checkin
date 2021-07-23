@@ -1,0 +1,2 @@
+pyaes==1.6.1
+requests==2.24.0
