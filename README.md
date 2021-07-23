@@ -1,19 +1,13 @@
 # hostloc-checkin
-Hostloc 签到 并自动推送至Telegram（TG-BOT） 基于Shell和Python3
-
-# 项目分析
-
-由一个py主程序和sh辅助程序来完成签到
-
-py负载签到，sh负责推送
+Hostloc 签到 并自动推送至Telegram（TG-BOT） 基于Python3
 
 ## 准备工作
 
-Shell，Python3全家桶，Hostloc账号名和密码
+SSH，Python3全家桶，Hostloc账号名和密码
 
 ## 使用方法
 
-py，sh，自己上传到对应目录即可，默认用的/root/
+py自己上传到对应目录即可，默认用的/root/
 
 如果是其他目录请自行修改SH的文件内容
 
@@ -21,11 +15,18 @@ py，sh，自己上传到对应目录即可，默认用的/root/
 
 需要配置的有
 
-py文件中175-176两行的账户名和密码
+195-196两行的账户名和密码
 
-sh文件中的tgid，tgbotapi
+15行的TG的BOTAPI和TGID
 
-为了避免触发防CC，我把单次访问时间拉高到了60s，所以执行时间会非常非常长
+为了避免触发防CC，我把单次访问时间拉高到了60s（23行），所以执行时间会非常非常长
+
+如果你不喜欢太久，可以自己改时间
+
+默认访问12个空间（170行）
+
+像华为云函数只能900S，所以要控制好，也可以考虑分开签到
+
 
 ### 定时
 
@@ -37,7 +38,10 @@ sh文件中的tgid，tgbotapi
 
 这个文件中添加
 
-30 1 * * * bash /root/hostloc.sh > /dev/null 2>&1
+30 1 * * * python3 /root/hostloc.py
+
+[或者把python3的路径也加上]
 
 # 参考资料
+
 https://github.com/Jox2018/hostloc_getPoints
