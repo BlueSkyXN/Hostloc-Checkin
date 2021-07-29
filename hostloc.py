@@ -7,13 +7,37 @@ import requests
 from pyaes import AESModeOfOperationCBC
 from requests import Session as req_Session
 from requests import post
+import rsa
+import base64
+import hashlib
+import sys
+
+sys.path.append('.')
+requests.packages.urllib3.disable_warnings()
+try:
+    from pusher import pusher
+except:
+    pass
+from urllib import parse
 
 result = '🏆HOSTLOC签到姬🏆\n'
 
+TGBOTAPI = os.environ.get("TGBOTAPI")
+TGID = os.environ.get("TGID")
+username = os.environ.get("username")
+password = os.environ.get("password")
+
+# 【username】格式为ac1,ac2,ac3
+# 【password】格式为pw1,pw2,pw3
+
+
 def pushtg(data):
+    global TGBOTAPI
+    global TGID
     requests.post(
-        'https://api.telegram.org/【BOTAPI】/sendMessage?chat_id=【TGID】&text='+data)
-# 【BOTAPI】格式为bot123456:abcdefghi
+        'https://api.telegram.org/bot'+TGBOTAPI+'/sendMessage?chat_id='+TGID+'&text='+data)
+
+# 【BOTAPI】格式为123456:abcdefghi
 # 【TGID】格式为123456（人）或者-100123456（群组/频道）
 
 # 随机生成用户空间链接
@@ -151,7 +175,7 @@ def print_current_points(s: req_Session):
     else:
         print("无法获取帐户积分，可能页面存在错误或者未登录！")
         result += "无法获取帐户积分，可能页面存在错误或者未登录！"
-    time.sleep(10)
+    time.sleep(12)
 
 
 # 依次访问随机生成的用户空间链接获取积分
@@ -167,7 +191,7 @@ def get_points(s: req_Session, number_c: int):
                 res = s.get(url)
                 res.raise_for_status()
                 print("第", i + 1, "个用户空间链接访问成功")
-                time.sleep(60)  # 每访问一个链接后休眠60秒，以避免触发论坛的防CC机制
+                time.sleep(12)  # 每访问一个链接后休眠60秒，以避免触发论坛的防CC机制
             except Exception as e:
                 print("链接访问异常：" + str(e))
             continue
@@ -192,8 +216,9 @@ def print_my_ip():
 
 def main():
     global result
-    username = "username,username"
-    password = "password,password"
+    global username
+    global password
+    
     # username = os.environ["HOSTLOC_USERNAME"]
     # password = os.environ["HOSTLOC_PASSWORD"]
     #账户和密码
@@ -228,10 +253,11 @@ def main():
 
         print("程序执行完毕，获取积分过程结束")
         result += "签到成功!"
-    pushtg(result)
 
 def main_handler(event, context):
     main()
+    pushtg(result)
 
 if __name__ == "__main__":
     main()
+    pushtg(result)
