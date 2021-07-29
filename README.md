@@ -36,6 +36,15 @@ py自己上传到对应目录即可，默认用的/root/
 
 像华为云函数只能900S，所以要控制好，也可以考虑分开签到
 
+云函数部署参考： https://www.blueskyxn.com/202107/4816.html
+
+可以把PIP包上传到依赖包空间，然后主文件上传/复制进去修改就行
+
+[![image.png](https://p.pstatp.com/origin/pgc-image/140547a1842b4c4cbef68735ec1f87fe)](https://p.pstatp.com/origin/pgc-image/140547a1842b4c4cbef68735ec1f87fe)
+
+也可以把整个serverless包上传
+
+上传完记得修改参数和超时时间，然后测试ok后加上定时器
 
 ### 定时
 
